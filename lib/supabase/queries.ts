@@ -8,6 +8,15 @@ type Booking = Database['public']['Tables']['bookings']['Insert']
 // Get all galleries
 export async function getGalleries() {
   try {
+    // Check if environment variables are set
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn('Supabase environment variables not configured')
+      return []
+    }
+
     const supabase = createSupabaseServerClient()
     
     const { data, error } = await supabase
@@ -24,14 +33,22 @@ export async function getGalleries() {
     // Get photo count for each gallery
     const galleriesWithCounts = await Promise.all(
       (data || []).map(async (gallery) => {
-        const { count } = await supabase
-          .from('photos')
-          .select('*', { count: 'exact', head: true })
-          .eq('gallery_id', gallery.id)
-        
-        return {
-          ...gallery,
-          photo_count: count || 0,
+        try {
+          const { count } = await supabase
+            .from('photos')
+            .select('*', { count: 'exact', head: true })
+            .eq('gallery_id', gallery.id)
+          
+          return {
+            ...gallery,
+            photo_count: count || 0,
+          }
+        } catch (err) {
+          console.error('Error counting photos for gallery:', err)
+          return {
+            ...gallery,
+            photo_count: 0,
+          }
         }
       })
     )
