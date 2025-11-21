@@ -38,7 +38,7 @@ export async function getGalleries() {
 
     // Get photo count for each gallery
     const galleriesWithCounts = await Promise.all(
-      (data || []).map(async (gallery) => {
+      (data || []).map(async (gallery: Gallery) => {
         try {
           const { count } = await supabase
             .from('photos')
