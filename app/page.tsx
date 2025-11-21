@@ -1,8 +1,18 @@
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 import { getGalleries } from '@/lib/supabase/queries'
 
+// Force dynamic rendering to avoid build-time errors
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
-  const galleries = await getGalleries()
+  let galleries = []
+  
+  try {
+    galleries = await getGalleries()
+  } catch (error) {
+    console.error('Error fetching galleries:', error)
+    // Continue with empty galleries array if there's an error
+  }
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}

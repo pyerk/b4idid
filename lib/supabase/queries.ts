@@ -7,35 +7,40 @@ type Booking = Database['public']['Tables']['bookings']['Insert']
 
 // Get all galleries
 export async function getGalleries() {
-  const supabase = createSupabaseServerClient()
-  
-  const { data, error } = await supabase
-    .from('galleries')
-    .select('*')
-    .order('date', { ascending: false, nullsFirst: false })
-    .order('created_at', { ascending: false })
+  try {
+    const supabase = createSupabaseServerClient()
+    
+    const { data, error } = await supabase
+      .from('galleries')
+      .select('*')
+      .order('date', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
 
-  if (error) {
-    console.error('Error fetching galleries:', error)
+    if (error) {
+      console.error('Error fetching galleries:', error)
+      return []
+    }
+
+    // Get photo count for each gallery
+    const galleriesWithCounts = await Promise.all(
+      (data || []).map(async (gallery) => {
+        const { count } = await supabase
+          .from('photos')
+          .select('*', { count: 'exact', head: true })
+          .eq('gallery_id', gallery.id)
+        
+        return {
+          ...gallery,
+          photo_count: count || 0,
+        }
+      })
+    )
+
+    return galleriesWithCounts
+  } catch (error) {
+    console.error('Error in getGalleries:', error)
     return []
   }
-
-  // Get photo count for each gallery
-  const galleriesWithCounts = await Promise.all(
-    (data || []).map(async (gallery) => {
-      const { count } = await supabase
-        .from('photos')
-        .select('*', { count: 'exact', head: true })
-        .eq('gallery_id', gallery.id)
-      
-      return {
-        ...gallery,
-        photo_count: count || 0,
-      }
-    })
-  )
-
-  return galleriesWithCounts
 }
 
 // Get a single gallery by ID
