@@ -1,11 +1,3 @@
-import type { Metadata } from 'next'
-import './globals.css'
-
-export const metadata: Metadata = {
-  title: 'b4idid - Photography Portfolio',
-  description: 'Professional photography portfolio',
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -13,6 +5,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>b4idid - Photography Portfolio</title>
+      </head>
       <body>
         {children}
       </body>
