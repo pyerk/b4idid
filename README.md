@@ -1,55 +1,45 @@
 # b4idid
 
-## 🚀 Deployment Status
+## 🚀 Project Overview
 
-This project is automatically deployed to Vercel when changes are pushed to the `main` branch.
+This project uses:
+- **GitHub** - Version control and repository management
+- **Vercel** - Website hosting and deployment
+- **Supabase** - SQL database
+- **AWS** - Backend services (if needed)
 
-- **GitHub Repository**: https://github.com/pyerk/b4idid
-- **Vercel Deployment**: Auto-deploys from GitHub
-- **Status**: ✅ Connected and ready
+## 📋 Tech Stack
 
-## Setup Instructions
+- Version Control: GitHub
+- Hosting: Vercel (auto-deploys from `main` branch)
+- Database: Supabase
+- Backend: AWS (as needed)
 
-To connect this project to the GitHub repository:
+## 🔧 Development
 
-1. **Install Git** (if not already installed):
-   - Download from: https://git-scm.com/download/win
-   - Follow the installation wizard
+### Getting Started
 
-2. **Run the setup script**:
-   ```powershell
-   .\setup-git.ps1
-   ```
-
-3. **Configure your Git identity** (if not already done):
+1. Clone the repository:
    ```bash
-   git config --global user.name "Your Name"
-   git config --global user.email "your.email@example.com"
+   git clone https://github.com/pyerk/b4idid.git
+   cd b4idid
    ```
 
-4. **Make your first commit and push**:
+2. Install dependencies (when applicable):
    ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push -u origin main
+   # Add installation commands here
    ```
 
-## Manual Setup (Alternative)
+3. Set up environment variables:
+   ```bash
+   # Add environment setup instructions here
+   ```
 
-If you prefer to set up manually:
+4. Run locally:
+   ```bash
+   # Add local development commands here
+   ```
 
-```bash
-# Initialize git repository
-git init
+## 📝 Project Status
 
-# Add remote (replace YOUR_PAT with your Personal Access Token)
-git remote add origin https://YOUR_PAT@github.com/pyerk/b4idid.git
-
-# Verify remote
-git remote -v
-
-# Add, commit, and push
-git add .
-git commit -m "Initial commit"
-git push -u origin main
-```
+🚧 Project setup in progress...
