@@ -3,11 +3,9 @@ import { createSupabaseAdminClient } from '@/lib/supabase/client'
 import { generateImagePath } from '@/lib/supabase/storage'
 import sharp from 'sharp'
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+// Disable body parsing, we'll handle it manually
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   try {
