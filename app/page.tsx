@@ -11,23 +11,18 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function Home() {
+  // Always initialize with empty array to ensure page renders
   let galleries: Gallery[] = []
   
   try {
-    // Check if Supabase is configured before trying to fetch
-    const hasSupabaseConfig = 
-      process.env.NEXT_PUBLIC_SUPABASE_URL && 
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    
-    if (hasSupabaseConfig) {
-      galleries = await getGalleries()
-    }
+    galleries = await getGalleries()
   } catch (error) {
-    console.error('Error fetching galleries:', error)
-    // Continue with empty galleries array
+    // Log error but don't throw - ensure page still renders
+    console.error('Error in Home page:', error)
     galleries = []
   }
 
+  // Page will always render, even if galleries is empty
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
