@@ -15,7 +15,10 @@ export const createSupabaseServerClient = () => {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY')
+    // Return a mock client that will fail gracefully instead of throwing
+    // This prevents the page from crashing during SSR
+    console.warn('Supabase environment variables not configured. Returning null client.')
+    return null as any
   }
 
   return createClient<Database>(supabaseUrl, supabaseAnonKey)

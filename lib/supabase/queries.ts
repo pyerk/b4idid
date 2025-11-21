@@ -19,6 +19,12 @@ export async function getGalleries() {
 
     const supabase = createSupabaseServerClient()
     
+    // Check if supabase client is valid
+    if (!supabase) {
+      console.warn('Supabase client not available')
+      return []
+    }
+    
     const { data, error } = await supabase
       .from('galleries')
       .select('*')

@@ -8,17 +8,26 @@ type Gallery = Database['public']['Tables']['galleries']['Row'] & {
 
 // Force dynamic rendering to avoid build-time errors
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function Home() {
   let galleries: Gallery[] = []
   
   try {
-    galleries = await getGalleries()
+    // Check if Supabase is configured before trying to fetch
+    const hasSupabaseConfig = 
+      process.env.NEXT_PUBLIC_SUPABASE_URL && 
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    
+    if (hasSupabaseConfig) {
+      galleries = await getGalleries()
+    }
   } catch (error) {
     console.error('Error fetching galleries:', error)
-    // Continue with empty galleries array if there's an error
+    // Continue with empty galleries array
     galleries = []
   }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
