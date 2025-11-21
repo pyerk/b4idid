@@ -1,0 +1,28 @@
+# Sensitive files
+setup-git.ps1
+*.env
+*.key
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
