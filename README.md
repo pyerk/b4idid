@@ -1,5 +1,13 @@
 # b4idid
 
+## 🚀 Deployment Status
+
+This project is automatically deployed to Vercel when changes are pushed to the `main` branch.
+
+- **GitHub Repository**: https://github.com/pyerk/b4idid
+- **Vercel Deployment**: Auto-deploys from GitHub
+- **Status**: ✅ Connected and ready
+
 ## Setup Instructions
 
 To connect this project to the GitHub repository:
