@@ -12,11 +12,19 @@ export const dynamic = 'force-dynamic'
 export default async function Home() {
   let galleries: Gallery[] = []
   
-  try {
-    galleries = await getGalleries()
-  } catch (error) {
-    console.error('Error fetching galleries:', error)
-    // Continue with empty galleries array if there's an error
+  // Check if Supabase is configured
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  
+  if (supabaseUrl && supabaseKey) {
+    try {
+      galleries = await getGalleries()
+    } catch (error) {
+      console.error('Error fetching galleries:', error)
+      // Continue with empty galleries array if there's an error
+    }
+  } else {
+    console.warn('Supabase environment variables not configured. Using empty galleries.')
   }
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
