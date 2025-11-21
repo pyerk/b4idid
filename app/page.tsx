@@ -1,28 +1,8 @@
-import GalleryGrid from '@/components/gallery/GalleryGrid'
-import { getGalleries } from '@/lib/supabase/queries'
-import { Database } from '@/types/supabase'
-
-type Gallery = Database['public']['Tables']['galleries']['Row'] & {
-  photo_count?: number
-}
-
-// Force dynamic rendering to avoid build-time errors
+// Force dynamic rendering
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-export default async function Home() {
-  // Always initialize with empty array to ensure page renders
-  let galleries: Gallery[] = []
-  
-  try {
-    galleries = await getGalleries()
-  } catch (error) {
-    // Log error but don't throw - ensure page still renders
-    console.error('Error in Home page:', error)
-    galleries = []
-  }
-
-  // Page will always render, even if galleries is empty
+export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
@@ -38,7 +18,10 @@ export default async function Home() {
       {/* Gallery Grid */}
       <div className="mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">Recent Work</h2>
-        <GalleryGrid galleries={galleries} />
+        <div className="text-center py-20">
+          <p className="text-gray-500 text-lg">No galleries available yet.</p>
+          <p className="text-gray-400 mt-2">Check back soon for new work!</p>
+        </div>
       </div>
 
       {/* Call to Action */}
