@@ -5,9 +5,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <title>b4idid - Photography Portfolio</title>
-      </head>
       <body>
         {children}
       </body>
