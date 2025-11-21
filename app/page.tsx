@@ -1,11 +1,8 @@
-export const dynamic = 'force-static'
-export const revalidate = false
-
-export default function HomePage() {
+export default function Page() {
   return (
-    <main style={{ padding: '2rem', textAlign: 'center' }}>
+    <div>
       <h1>Hello World</h1>
-      <p>This is a test page</p>
-    </main>
+      <p>If you see this, it works!</p>
+    </div>
   )
 }
