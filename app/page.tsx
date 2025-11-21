@@ -1,14 +1,8 @@
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'b4idid - Photography Portfolio',
-}
-
-export default function Page() {
+export default function HomePage() {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <main>
       <h1>Hello World</h1>
       <p>This is a test page</p>
-    </div>
+    </main>
   )
 }
