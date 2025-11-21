@@ -1,34 +1,8 @@
 import GalleryGrid from '@/components/gallery/GalleryGrid'
+import { getGalleries } from '@/lib/supabase/queries'
 
-// Mock data - will be replaced with Supabase data later
-const mockGalleries = [
-  {
-    id: '1',
-    title: 'Wedding Photography',
-    description: 'Beautiful wedding moments captured',
-    cover_image_url: null,
-    date: '2024-01-15',
-    photo_count: 45,
-  },
-  {
-    id: '2',
-    title: 'Portrait Session',
-    description: 'Professional portrait photography',
-    cover_image_url: null,
-    date: '2024-02-20',
-    photo_count: 30,
-  },
-  {
-    id: '3',
-    title: 'Event Coverage',
-    description: 'Corporate event photography',
-    cover_image_url: null,
-    date: '2024-03-10',
-    photo_count: 60,
-  },
-]
-
-export default function Home() {
+export default async function Home() {
+  const galleries = await getGalleries()
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
@@ -44,7 +18,7 @@ export default function Home() {
       {/* Gallery Grid */}
       <div className="mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">Recent Work</h2>
-        <GalleryGrid galleries={mockGalleries} />
+        <GalleryGrid galleries={galleries} />
       </div>
 
       {/* Call to Action */}

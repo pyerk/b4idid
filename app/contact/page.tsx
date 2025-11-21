@@ -26,10 +26,26 @@ export default function ContactPage() {
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
-    // TODO: Integrate with Supabase to save booking
-    // For now, simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          client_name: formData.name,
+          client_email: formData.email,
+          client_phone: formData.phone || null,
+          event_type: formData.eventType,
+          event_date: formData.eventDate || null,
+          message: formData.message,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit booking')
+      }
+
       setSubmitStatus('success')
       setFormData({
         name: '',
@@ -39,7 +55,12 @@ export default function ContactPage() {
         eventDate: '',
         message: '',
       })
-    }, 1000)
+    } catch (error) {
+      console.error('Error submitting booking:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (

@@ -4,12 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-interface Gallery {
-  id: string
-  title: string
-  description: string | null
-  cover_image_url: string | null
-  date: string | null
+import { Database } from '@/types/supabase'
+
+type Gallery = Database['public']['Tables']['galleries']['Row'] & {
   photo_count?: number
 }
 
