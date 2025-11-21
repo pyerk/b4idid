@@ -1,10 +1,8 @@
-'use client'
-
-export default function Home() {
+export default function Page() {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Test Page</h1>
-      <p>If you can see this, the page is working!</p>
+    <div>
+      <h1>Hello World</h1>
+      <p>This is a test page</p>
     </div>
   )
 }
