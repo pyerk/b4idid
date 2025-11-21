@@ -1,11 +1,16 @@
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 import { getGalleries } from '@/lib/supabase/queries'
+import { Database } from '@/types/supabase'
+
+type Gallery = Database['public']['Tables']['galleries']['Row'] & {
+  photo_count?: number
+}
 
 // Force dynamic rendering to avoid build-time errors
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-  let galleries = []
+  let galleries: Gallery[] = []
   
   try {
     galleries = await getGalleries()
