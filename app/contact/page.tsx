@@ -70,7 +70,7 @@ export default function ContactPage() {
           Book a Photoshoot
         </h1>
         <p className="text-xl text-gray-600">
-          Let's discuss your photography needs and create something beautiful together
+          Let&apos;s discuss your photography needs and create something beautiful together
         </p>
       </div>
 
@@ -192,7 +192,7 @@ export default function ContactPage() {
           {/* Success/Error Messages */}
           {submitStatus === 'success' && (
             <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-              Thank you! Your inquiry has been submitted. I'll get back to you soon!
+              Thank you! Your inquiry has been submitted. I&apos;ll get back to you soon!
             </div>
           )}
           {submitStatus === 'error' && (

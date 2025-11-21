@@ -11,7 +11,7 @@ export default async function Home() {
           Photography Portfolio
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Capturing life's most precious moments through the lens
+          Capturing life&apos;s most precious moments through the lens
         </p>
       </div>
 
@@ -25,7 +25,7 @@ export default async function Home() {
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-12 text-center text-white mt-20">
         <h2 className="text-3xl font-bold mb-4">Ready to Book Your Session?</h2>
         <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-          Let's work together to create beautiful memories that will last a lifetime.
+          Let&apos;s work together to create beautiful memories that will last a lifetime.
         </p>
         <a
           href="/contact"
