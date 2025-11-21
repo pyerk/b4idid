@@ -26,6 +26,9 @@ export default function Navigation() {
             <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition font-medium">
               Book a Shoot
             </Link>
+            <Link href="/admin" className="text-gray-700 hover:text-gray-900 transition font-medium">
+              Admin
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -75,6 +78,13 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(false)}
             >
               Book a Shoot
+            </Link>
+            <Link
+              href="/admin"
+              className="block text-gray-700 hover:text-gray-900 transition font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Admin
             </Link>
           </div>
         )}
